@@ -14,7 +14,7 @@ public class GuardianMovevment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = Input.GetAxisRaw("Vertical");
+        float speed = Input.GetAxisRaw("Vertical"); // - 1
 
         animMachine.SetFloat("current speed", speed);
 
