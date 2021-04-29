@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
 
     public AnimationCurve ankleRotCurve;
 
+
+
+
+
+
+    private Camera cam;
+
     public States state { get; private set; }
     public Vector3 moveDir { get; private set; }
 
@@ -28,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         state = States.Idle;
         pawn = GetComponent<CharacterController>();
+
+        cam = Camera.main;
     }
 
     
@@ -35,6 +44,16 @@ public class PlayerController : MonoBehaviour
     {
         float vert = Input.GetAxis("Vertical");
         float horz = Input.GetAxis("Horizontal");
+
+        bool isTryingToMove = (horz != 0 || vert != 0);
+
+        if (isTryingToMove)
+        {
+            float camYaw = cam.transform.eulerAngles.y;
+            transform.rotation = AnimMath.Slide(transform.rotation, Quaternion.Euler(0, camYaw, 0), .02f);
+        }
+
+
 
         Vector3 moveDir = transform.forward * vert + transform.right * horz;
         if(moveDir.sqrMagnitude > 1) moveDir.Normalize();
