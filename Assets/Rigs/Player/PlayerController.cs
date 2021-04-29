@@ -55,8 +55,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-        Vector3 moveDir = transform.forward * vert + transform.right * horz;
+        moveDir = transform.forward * vert + transform.right * horz;
         if(moveDir.sqrMagnitude > 1) moveDir.Normalize();
+
+
         /*if(vert > 0|| horz >0 )
         {
             state= States.Walk;
@@ -69,5 +71,17 @@ public class PlayerController : MonoBehaviour
             state = States.Idle;
         }*/
 
+        if (pawn.isGrounded)
+        {
+            if(moveDir.sqrMagnitude > 0.1f)
+            {
+                state = States.Walk;
+
+            }
+            else
+            {
+                state = States.Idle;
+            }
+        }
     }
 }

@@ -67,7 +67,13 @@ public class FeetAnim : MonoBehaviour
 
         // lateral movement:(z + x)
         float frontToBack = Mathf.Sin(time);
-        finalPos += player.moveDir * frontToBack * player.walkScale.z;
+
+        //finalPos += player.moveDir * frontToBack * player.walkScale.z;
+        if (Input.GetKey(KeyCode.W)) finalPos.z += frontToBack * player.walkScale.z;
+        else if (Input.GetKey(KeyCode.S)) finalPos.z -= frontToBack * player.walkScale.z;
+
+        if (Input.GetKey(KeyCode.A)) finalPos.x -= frontToBack * player.walkScale.z * 0.8f;
+        else if (Input.GetKey(KeyCode.D)) finalPos.x += frontToBack * player.walkScale.z * 0.8f;
 
 
         //vertical movement: (y)
@@ -83,8 +89,10 @@ public class FeetAnim : MonoBehaviour
 
         float anklePitch = isOnGround ? 0 : -p * 20;
 
+        finalPos = new Vector3(finalPos.x, finalPos.y - 1.25f, finalPos.z);
+
         transform.localPosition = finalPos;
-        //transform.localRotation = startingRot * Quaternion.Euler(0, 0, anklePitch);
+        transform.localRotation = startingRot * Quaternion.Euler(0, 0, anklePitch);
 
         //targetPos = transform.TransformPoint(finalPos);
         // targetRot = transform.parent.rotation * startingRot * Quaternion.Euler(0, 0, anklePitch);
@@ -108,7 +116,7 @@ public class FeetAnim : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            //hit.point = new Vector3(hit.point.x, hit.point.y + 0.075f, hit.point.z);
+            hit.point = new Vector3(hit.point.x, hit.point.y + .75f, hit.point.z);
             transform.position = hit.point;
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
