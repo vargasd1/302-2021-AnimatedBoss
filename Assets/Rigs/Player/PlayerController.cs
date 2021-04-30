@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     public enum States
     {
         Idle,
-        Walk
+        Walk,
+        Death,
+        Attack
     }
 
     private CharacterController pawn;

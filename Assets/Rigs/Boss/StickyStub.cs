@@ -83,6 +83,7 @@ public class StickyStub : MonoBehaviour
             // ending anim setup
             plantedPos = hit.point;
             plantedRot = Quaternion.FromToRotation(-transform.up, hit.normal);
+            plantedRot = Quaternion.Euler(plantedRot.x, 0, plantedRot.z - 90);
 
 
             // start anim
