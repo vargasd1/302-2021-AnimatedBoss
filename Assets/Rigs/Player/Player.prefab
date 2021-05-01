@@ -2766,6 +2766,7 @@ GameObject:
   - component: {fileID: 6206692273581943342}
   - component: {fileID: 2075440072971903519}
   - component: {fileID: 6564290160648245660}
+  - component: {fileID: 4539448031019140998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2859,8 +2860,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a19f179ff1d32f47a5bd5db4e00fd4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  stepSpeed: 5
+  walkSpeed: 9
+  stepSpeed: 10
+  projectile: {fileID: 1323157316442598066, guid: 1d501fc2bf0dd094c923f1eaaaced7fb, type: 3}
+  player: {fileID: 7350065595123337669}
+  magicSpawnLoc: {fileID: 6444211471201300949}
   walkScale: {x: 5, y: 2, z: 5}
   ankleRotCurve:
     serializedVersion: 2
@@ -2904,6 +2908,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  state: 0
+--- !u!114 &4539448031019140998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350065595123337669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9708a07f34c0704eba27e8244b06d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  iFrames: 0
 --- !u!1 &7395575083129176456
 GameObject:
   m_ObjectHideFlags: 0

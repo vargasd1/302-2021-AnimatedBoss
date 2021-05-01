@@ -42,7 +42,7 @@ public class FeetAnim : MonoBehaviour
 
     void Update()
     {
-        print(player.state);
+        
         switch (player.state)
         {
             case PlayerController.States.Idle:

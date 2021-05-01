@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5;
     public float stepSpeed = 5;
 
+    public GameObject projectile;
+    public GameObject player;
+    public Transform magicSpawnLoc;
+    
+
     //public float walkCD = 3;
 
     public Vector3 walkScale = Vector3.one;
@@ -24,13 +29,12 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve ankleRotCurve;
 
 
-
-
-
-
     private Camera cam;
 
-    public States state { get; private set; }
+    public States state;
+
+    
+
     public Vector3 moveDir { get; private set; }
 
     void Start()
@@ -61,17 +65,10 @@ public class PlayerController : MonoBehaviour
         if(moveDir.sqrMagnitude > 1) moveDir.Normalize();
 
 
-        /*if(vert > 0|| horz >0 )
-        {
-            state= States.Walk;
-        }*/
+       
         pawn.SimpleMove(moveDir * walkSpeed);
 
-        /*walkCD--;
-        if(walkCD < 0)
-        {
-            state = States.Idle;
-        }*/
+       
 
         if (pawn.isGrounded)
         {
@@ -83,6 +80,18 @@ public class PlayerController : MonoBehaviour
             else
             {
                 state = States.Idle;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                state = States.Attack;
+
+                GameObject PAttack = Instantiate(projectile, magicSpawnLoc.position, player.transform.rotation, null) as GameObject;
+                Rigidbody rb = PAttack.GetComponent<Rigidbody>();
+                rb.velocity = player.transform.forward * 20;
+                
+
+
             }
         }
     }

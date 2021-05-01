@@ -108,7 +108,7 @@ public class CameraOrbit : MonoBehaviour
         yaw += mx * cameraSensitivityX;
         pitch += my * cameraSensitivityY;
 
-        pitch = Mathf.Clamp(pitch, 15, 60);
+        pitch = Mathf.Clamp(pitch, 5, 60);
 
         /*if (IsTargeting()) // a z-targeting
         {
